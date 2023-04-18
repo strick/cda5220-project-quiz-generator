@@ -42,7 +42,9 @@ function loadQuestion2()
 
 function showQuestion2Answer()
 {
-    setBlockValue("q2_seed_address", getBlockValue("q2_block_a"));
+    var address = getBlockValue("q2_block_a");
+
+    setBlockValue("q2_seed_address", address);
     setBlockValue("q2_seed_counter", getBlockValue("q2_counter"));
 
     var seed = calculateSeed(
@@ -52,13 +54,30 @@ function showQuestion2Answer()
     setBlockValue("q2_seed", seed);
 
     var pad = calculatePad(seed);
-    setBlockValue("q2_pad_seed", getBlockValue("q2_seed"));
+    setBlockValue("q2_pad_seed", seed);
     setBlockValue("q2_pad", pad);
+
+    var cipher = calculateCounterCipher(address, pad);
+    setBlockValue("q2_cipher_address", address);
+    setBlockValue("q2_cipher_pad", pad)
+    setBlockValue("q2_cipher", cipher);
+}
+
+function calculateCounterCipher(address, pad)
+{
+    let addressBin = parseInt(address, 2);
+    let padBin = parseInt(pad, 2);
+
+    var cipherBin = addressBin ^ padBin;
+    let cipher = cipherBin.toString(2);
+    console.log(address + " XOR " + pad + " = " + cipher);
+
+    return cipher;
 }
 
 function calculatePad(seed)
 {
-    // Force seeed to 4 bit
+    // Force seed to 4 bit
     seed = seed.substr(seed.length - 4, seed.length - 1);
 
     var pad = calculateDirectEncryption(seed, q2KeyPairs);
