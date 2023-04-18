@@ -35,19 +35,21 @@
                 <h3 id="question-1-answers">Question 1 answers</h3>
                 <p>Block A: <code id="q1_block_a_ans"></code></p>
                 <p>Block B: <code id="q1_block_b_ans"></code></p>                
-            </div>
-            <div class="button-container">
-                <button class="left-button">Previous</button>
-                <button class="center-button" onclick="showAnswer('q1_answer');">Show Answers</button>
-                <button class="right-button">Next</button>
-            </div>
-
+            </div>            
         </div>
         <div class="question_group" id="q2">
             <div class="question">
                 <h2 id="question-2">Question 2</h2>
             </div>
+            <div class="answer" id="q2_answer">
+
+            </div>
         </div> 
+        <div class="button-container">
+            <button class="left-button" id="prevQuestion" onclick="prevQuestion();">Previous</button>
+            <button class="center-button" onclick="showAnswer('q1_answer');">Show Answers</button>
+            <button class="right-button" id="nextQuestion" onclick="nextQuestion();">Next</button>
+        </div>
         <script src="./js/functions.js"></script>
     </body>
 </html>

@@ -4,6 +4,7 @@ const q1BlockB = "q1_block_b";
 const q1Counter = "q1_counter";
 const q1KeyPairs = getTablePairs();
 const q1BlockAAns = "q1_block_a_ans";
+var currentQuestion = 0;
 
 function generateQuestion1()
 {
@@ -23,6 +24,11 @@ function generateQuestion1()
 
     document.getElementById("q1").style.display = "inherit";
 
+}
+
+function loadQuestion2()
+{
+    document.getElementById("q2").style.display = "inherit";
 }
 
 function setBlockValue(id, value)
@@ -53,6 +59,8 @@ function getRandomFourBit()
 function buildTable(table, inputEncryptionPairs)
 {
     const myTable = document.getElementById(table);
+    if(myTable.rows.length > 0)
+        return;
 
     /*
     for (const inputValue in inputEncryptionPairs) {
@@ -163,13 +171,50 @@ function hideAnswer(id)
 }
 
 function init()
+{ 
+    clearQuestions();
+    currentQuestion = 1;
+    loadQuestion();
+
+}
+
+function nextQuestion()
+{
+    currentQuestion++;
+    loadQuestion();
+
+}
+
+function prevQuestion()
+{
+    currentQuestion--;
+    loadQuestion()
+}
+
+function loadQuestion()
+{
+    clearQuestions();
+
+    if(currentQuestion > 2)
+        currentQuestion = 2;
+    if(currentQuestion < 1)
+        currentQuestion = 1;
+
+    switch(currentQuestion){
+        case 1:
+            generateQuestion1();
+            break;
+        case 2:
+            loadQuestion2();
+        default:
+            ;           
+    }
+}
+
+function clearQuestions()
 {
     var elements = document.getElementsByClassName("question_group");
     for(var i = 0; i < elements.length; i++){
         elements[i].style.display = "none";
     }
-
-    // Show the correct page
-    generateQuestion1();
-
 }
