@@ -21,6 +21,8 @@ function generateQuestion1()
     setBlockValue(q1BlockAAns, a);
     setBlockValue("q1_block_b_ans", b);
 
+    document.getElementById("q1").style.display = "inherit";
+
 }
 
 function setBlockValue(id, value)
@@ -64,26 +66,30 @@ function buildTable(table, inputEncryptionPairs)
         encryptionKeyCell.textContent = inputEncryptionPairs[inputValue];
       }
       */
-      const inputRow = myTable.insertRow();
-     // Create the input value header cell
-        const inputValueHeaderCell = inputRow.insertCell();
-        inputValueHeaderCell.textContent = "Input, i.e. x";
-        // Loop through the inputEncryptionPairs object and create a new cell for each input value
-        for (const inputValue in inputEncryptionPairs) {
+    const inputRow = myTable.insertRow();
+    // Create the input value header cell
+    const inputValueHeaderCell = inputRow.insertCell();
+    
+    inputValueHeaderCell.textContent = "Input, i.e. x";
+
+    // Loop through the inputEncryptionPairs object and create a new cell for each input value
+    for (const inputValue in inputEncryptionPairs) {
         const cell = inputRow.insertCell();
         cell.textContent = inputValue;
-}
+    }
 
-// Create the second row for encryption keys
-const encryptionKeyRow = myTable.insertRow();
-// Create the encryption key header cell
-const encryptionKeyHeaderCell = encryptionKeyRow.insertCell();
-encryptionKeyHeaderCell.textContent = "Encryption Output, i.e. E_K(x";
-// Loop through the inputEncryptionPairs object and create a new cell for each encryption key
-for (const inputValue in inputEncryptionPairs) {
-  const cell = encryptionKeyRow.insertCell();
-  cell.textContent = inputEncryptionPairs[inputValue];
-}
+    // Create the second row for encryption keys
+    const encryptionKeyRow = myTable.insertRow();
+    
+    // Create the encryption key header cell
+    const encryptionKeyHeaderCell = encryptionKeyRow.insertCell();
+    encryptionKeyHeaderCell.textContent = "Encryption Output, i.e. E_K(x";
+    
+    // Loop through the inputEncryptionPairs object and create a new cell for each encryption key
+    for (const inputValue in inputEncryptionPairs) {
+        const cell = encryptionKeyRow.insertCell();
+        cell.textContent = inputEncryptionPairs[inputValue];
+    }
 }
 
 function getTablePairs()
@@ -102,16 +108,16 @@ function getTablePairs()
      }
  
      // Log the input values and encryption keys arrays to the console
-     console.log(inputValues);
-     console.log(inputEncryptionPairs);
+     //console.log(inputValues);
+     //console.log(inputEncryptionPairs);
 
      return inputEncryptionPairs;
 }
 
 function calculateDirectEncryption(input, inputEncryptionPairs)
 {
-    console.log(input);
-    console.log(inputEncryptionPairs);
+    //console.log(input);
+    //console.log(inputEncryptionPairs);
     return inputEncryptionPairs[input];
 }
 
@@ -154,4 +160,16 @@ function findAnswerIndex(value, q1KeyPairs, block, color)
 function hideAnswer(id)
 {
     document.getElementById(id).style.display = "none";
+}
+
+function init()
+{
+    var elements = document.getElementsByClassName("question_group");
+    for(var i = 0; i < elements.length; i++){
+        elements[i].style.display = "none";
+    }
+
+    // Show the correct page
+    generateQuestion1();
+
 }
