@@ -1,13 +1,15 @@
+const q1Table = "q1_table";
+const q1BlockA = "q1_block_a";
+const q1BlockB = "q1_block_b";
+const q1Counter = "q1_counter";
+const q1KeyPairs = getTablePairs();
+const q1BlockAAns = "q1_block_a_ans";
+
 function generateQuestion1()
 {
 
-    const q1Table = "q1_table";
-    const q1BlockA = "q1_block_a";
-    const q1BlockB = "q1_block_b";
-    const q1Counter = "q1_counter";
-    const q1KeyPairs = getTablePairs();
-    const q1BlockAAns = "q1_block_a_ans";
-
+    hideAnswer('q1_answer');
+    
     buildTable(q1Table,q1KeyPairs);
     setBlockValue(q1BlockA, getRandomFourBit());
     setBlockValue(q1BlockB, getRandomFourBit());
@@ -111,4 +113,36 @@ function calculateDirectEncryption(input, inputEncryptionPairs)
     console.log(input);
     console.log(inputEncryptionPairs);
     return inputEncryptionPairs[input];
+}
+
+function showAnswer(id)
+{
+    document.getElementById(id).style.display = "inherit";
+
+    var a = calculateDirectEncryption(getBlockValue(q1BlockA), q1KeyPairs);
+    var b = calculateDirectEncryption(getBlockValue(q1BlockB), q1KeyPairs);
+
+    // Find the encrypted value column and highlight it
+    var index = 1;
+    for (const inputValue in q1KeyPairs) {
+
+        // If it's the answer save the index
+        if(a == q1KeyPairs[inputValue] && getBlockValue(q1BlockA) == inputValue){
+            break;
+        }
+
+        index++;
+    }
+
+    // Get the table and update the column
+    var table = document.getElementById(q1Table);
+    const cells = table.getElementsByTagName("td");
+    cells[index].classList.add('answer'); // Input
+    cells[index+17].classList.add('answer'); // Output
+
+}
+
+function hideAnswer(id)
+{
+    document.getElementById(id).style.display = "none";
 }

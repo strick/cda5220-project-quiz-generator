@@ -33,35 +33,45 @@
                 vertical-align: middle;
                 pointer-events: none;
             }
+            .answer {
+                font-weight: bold;
+                border: 1px solid red !important;
+            }
         </style>
     </head>
     <body class="vscode-body vscode-light">
         <h1 id="merkle-tree-quiz">Merkle Tree Quiz</h1>
-        <h2 id="question-1">Question 1</h2>
-        <p>Suppose that we have a hypothetical machine with the following characteristics</p>
-        <ul>
-            <li>Suppose that initially, blocks A and B are cached, but C and D are not.  Blocks A and B are dirty and recently written with values 0111 and 0000, respectively.</li>
-            <li>The memory can hold four data blocks: A, B, C, and D. Their block addresses are 00, 01, 10, and 11, respectively.</li>
-            <li>We employ a block encryption function that produces the following 4-bit encrypted value given some 4-bit input (shown in the table below)</li>
-        </ul>
-        <table id="q1_table">
-            <thead>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-        <p>Suppose that initially, blocks A and B are cached, but C and D are not. Blocks A and B are dirty and recently written with values of <span id="q1_block_a"></span> and <span id="q1_block_b"></span>, respectively.</p>
-        <p>a. Assuming a direct encryption scheme (i.e. electronic codebook mode) the encryption of block A is <code>___</code>. The encryption of block B is <code>___</code>.</p>
-        <p>b. Assume a 4 bit global counter with an initial value of <span id="q1_counter"></span>. The encryption seed used when writting block A to memory is <code>____</code>. It's pad is <code>____</code>, and the cipher text of A that is written to memory is <code>____</code>, the global counter value after A is written is <code>____</code>.</p>
 
-
-
-        <h2 id="answer-bank">Answer Bank</h2>
-        <h3 id="question-1-answers">Question 1 answers</h3>
-        <p>a.</p>
-        <ul>
-            <li><code id="q1_block_a_ans"></code>, <code id="q1_block_b_ans"></code>.</li>
-        </ul>
+        <div class="question_group" id="q1">
+            <div class="question">
+                <h2 id="question-1">Question 1</h2>
+                <p>Suppose that we have a hypothetical machine with the following characteristics</p>
+                <ul>
+                    <li>Suppose that initially, blocks A and B are cached, but C and D are not. Blocks A and B are dirty and recently written with values 0111 and 0000, respectively.</li>
+                    <li>The memory can hold four data blocks: A, B, C, and D. Their block addresses are 00, 01, 10, and 11, respectively.</li>
+                    <li>We employ a block encryption function that produces the following 4-bit encrypted value given some 4-bit input (shown in the table below)</li>
+                </ul>
+                <table id="q1_table">
+                    <thead>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <p>Suppose that initially, blocks A and B are cached, but C and D are not. Blocks A and B are dirty and recently written with values of <span id="q1_block_a"></span> and <span id="q1_block_b"></span>, respectively.</p>
+                <p>a. Assuming a direct encryption scheme (i.e. electronic codebook mode) the encryption of block A is <code>___</code>. The encryption of block B is <code>___</code>.</p>
+                <p>b. Assume a 4 bit global counter with an initial value of <span id="q1_counter"></span>. The encryption seed used when writting block A to memory is <code>____</code>. It's pad is <code>____</code>, and the cipher text of A that is written to memory is <code>____</code>, the global counter value after A is written is <code>____</code>.</p>
+            </div>
+            <div>
+                <button onclick="showAnswer('q1_answer');">Show Answers</button>
+            </div>
+            <div class="answer" id="q1_answer">
+                <h3 id="question-1-answers">Question 1 answers</h3>
+                <p>a.</p>
+                <ul>
+                    <li><code id="q1_block_a_ans"></code>, <code id="q1_block_b_ans"></code>.</li>
+                </ul>
+            </div>
+        </div>
         <script src="./functions.js"></script>
         <script>            
             generateQuestion1();
