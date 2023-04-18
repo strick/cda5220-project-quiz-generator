@@ -38,12 +38,12 @@ body {
 .button-container {
     display: flex;
     justify-content: space-between;
-    }
-    
-    .left-button {
+}
+
+.left-button {
     margin-right: auto;
-    }
-    
-    .right-button {
+}
+
+.right-button {
     margin-left: auto;
-    }
+}
