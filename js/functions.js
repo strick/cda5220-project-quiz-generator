@@ -14,7 +14,7 @@ function removeAnswerStyle(parent)
     for (let i = 0; i < children.length; i++) {
         children[i].classList.remove('red');
         children[i].classList.remove('blue');
-        remove(children[i]);
+        removeAnswerStyle(children[i]);
     }
 }
 
