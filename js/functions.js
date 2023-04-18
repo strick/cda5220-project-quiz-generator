@@ -1,7 +1,6 @@
 const q1Table = "q1_table";
 const q1BlockA = "q1_block_a";
 const q1BlockB = "q1_block_b";
-const q1Counter = "q1_counter";
 const q1KeyPairs = getTablePairs();
 var q2KeyPairs = getTablePairs();
 const q1BlockAAns = "q1_block_a_ans";
@@ -17,8 +16,7 @@ function generateQuestion1()
     buildTable(table,q1KeyPairs);
     setBlockValue(q1BlockA, getRandomFourBit());
     setBlockValue(q1BlockB, getRandomFourBit());
-    setBlockValue(q1Counter, getRandomFourBit());
-    
+        
     var a = calculateDirectEncryption(getBlockValue(q1BlockA), q1KeyPairs);
     var b = calculateDirectEncryption(getBlockValue(q1BlockB), q1KeyPairs);
 
@@ -69,7 +67,7 @@ function calculateCounterCipher(address, pad)
     let padBin = parseInt(pad, 2);
 
     var cipherBin = addressBin ^ padBin;
-    let cipher = cipherBin.toString(2);
+    let cipher = cipherBin.toString(2).padEnd(4, '0');
     console.log(address + " XOR " + pad + " = " + cipher);
 
     return cipher;
