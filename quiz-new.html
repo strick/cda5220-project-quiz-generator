@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Merkle Tree Quiz</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">        
+        <style>
+            /* From extension vscode.github */
+            /*---------------------------------------------------------------------------------------------
+                *  Copyright (c) Microsoft Corporation. All rights reserved.
+                *  Licensed under the MIT License. See License.txt in the project root for license information.
+                *--------------------------------------------------------------------------------------------*/
+            
+            .vscode-dark img[src$=\#gh-light-mode-only],
+            .vscode-light img[src$=\#gh-dark-mode-only] {
+                display: none;
+            }
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+
+            .task-list-item {
+                list-style-type: none;
+            }
+
+            .task-list-item-checkbox {
+                margin-left: -20px;
+                vertical-align: middle;
+                pointer-events: none;
+            }
+        </style>
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="merkle-tree-quiz">Merkle Tree Quiz</h1>
+        <h2 id="question-1">Question 1</h2>
+        <p>Suppose that we have a hypothetical machine with the following characteristics</p>
+        <ul>
+            <li>Suppose that initially, blocks A and B are cached, but C and D are not.  Blocks A and B are dirty and recently written with values 0111 and 0000, respectively.</li>
+            <li>The memory can hold four data blocks: A, B, C, and D. Their block addresses are 00, 01, 10, and 11, respectively.</li>
+            <li>We employ a block encryption function that produces the following 4-bit encrypted value given some 4-bit input (shown in the table below)</li>
+        </ul>
+        <table id="q1_table">
+            <thead>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <p>Suppose that initially, blocks A and B are cached, but C and D are not. Blocks A and B are dirty and recently written with values of <span id="q1_block_a"></span> and <span id="q1_block_b"></span>, respectively.</p>
+        <p>a. Assuming a direct encryption scheme (i.e. electronic codebook mode) the encryption of block A is <code>___</code>. The encryption of block B is <code>___</code>.</p>
+        <p>b. Assume a 4 bit global counter with an initial value of <span id="q1_counter"></span>. The encryption seed used when writting block A to memory is <code>____</code>. It's pad is <code>____</code>, and the cipher text of A that is written to memory is <code>____</code>, the global counter value after A is written is <code>____</code>.</p>
+
+
+
+        <h2 id="answer-bank">Answer Bank</h2>
+        <h3 id="question-1-answers">Question 1 answers</h3>
+        <p>a.</p>
+        <ul>
+            <li><code id="q1_block_a_ans"></code>, <code id="q1_block_b_ans"></code>.</li>
+        </ul>
+        <script src="./functions.js"></script>
+        <script>            
+            generateQuestion1();
+        </script>
+    </body>
+</html>
