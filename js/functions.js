@@ -3,6 +3,7 @@ const q1BlockA = "q1_block_a";
 const q1BlockB = "q1_block_b";
 const q1Counter = "q1_counter";
 const q1KeyPairs = getTablePairs();
+var q2KeyPairs = getTablePairs();
 const q1BlockAAns = "q1_block_a_ans";
 var currentQuestion = 0;
 
@@ -32,7 +33,7 @@ function loadQuestion2()
 {
     hideAnswer('q2_answer');
 
-    insertTable("q2_table_container");
+    q2KeyPairs = insertTable("q2_table_container");
     setBlockValue("q2_counter", getRandomFourBit());
     setBlockValue("q2_block_a", getRandomFourBit());
 
@@ -48,8 +49,21 @@ function showQuestion2Answer()
         getBlockValue("q2_seed_address"),
         getBlockValue("q2_seed_counter"),        
     );
-
     setBlockValue("q2_seed", seed);
+
+    var pad = calculatePad(seed);
+    setBlockValue("q2_pad_seed", getBlockValue("q2_seed"));
+    setBlockValue("q2_pad", pad);
+}
+
+function calculatePad(seed)
+{
+    // Force seeed to 4 bit
+    seed = seed.substr(seed.length - 4, seed.length - 1);
+
+    var pad = calculateDirectEncryption(seed, q2KeyPairs);
+
+    return pad;
 }
 
 function calculateSeed(address, counter)
@@ -83,9 +97,10 @@ function insertTable(tableContainerId)
         // Create the table
         var table = document.createElement('table');        
         buildTable(table, keyPairs);
-        tableContainer.appendChild(table);
-        
+        tableContainer.appendChild(table);        
     }
+
+    return keyPairs;
 }
 
 function buildTable(table, inputEncryptionPairs)
