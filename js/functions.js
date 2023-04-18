@@ -6,16 +6,28 @@ var q2KeyPairs = getTablePairs();
 const q1BlockAAns = "q1_block_a_ans";
 var currentQuestion = 0;
 
+function removeAnswerStyle(parent)
+{
+     let children = parent.children;
+
+    // loop through all the child elements and remove the 'active' class
+    for (let i = 0; i < children.length; i++) {
+        children[i].classList.remove('red');
+        children[i].classList.remove('blue');
+        remove(children[i]);
+    }
+}
+
 function generateQuestion1()
 {
 
     hideAnswer('q1_answer');
 
-    //var table = document.getElementById(q1Table);
+    let parent = document.getElementById("q1");
+    removeAnswerStyle(parent);
 
     q1KeyPairs, q1Table = insertTable("q1_table_container");
     
-    //buildTable(table,q1KeyPairs);
     setBlockValue(q1BlockA, getRandomFourBit());
     setBlockValue(q1BlockB, getRandomFourBit());
         
@@ -70,7 +82,7 @@ function calculateCounterCipher(address, pad)
 
     var cipherBin = addressBin ^ padBin;
     let cipher = cipherBin.toString(2).padEnd(4, '0');
-    console.log(address + " XOR " + pad + " = " + cipher);
+    //console.log(address + " XOR " + pad + " = " + cipher);
 
     return cipher;
 }
@@ -107,6 +119,12 @@ function increaseCounter(counter)
 
 function insertTable(tableContainerId)
 {
+    // Remove curren table if it's there,
+    let parent = document.getElementById(tableContainerId);
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+
     const keyPairs = getTablePairs();
     const tableContainer = document.getElementById(tableContainerId);
 
