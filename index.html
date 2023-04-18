@@ -37,19 +37,40 @@
                 <p>Block B: <code id="q1_block_b_ans"></code></p>                
             </div>            
         </div>
+
+
         <div class="question_group" id="q2">
             <div class="question">
                 <h2 id="question-2">Question 2</h2>
+                <p>Suppose that we have a hypothetical machine with the following characteristics</p>
+                <ul>
+                    <li>Suppose that initially, blocks A and B are cached, but C and D are not. Blocks A and B are dirty and recently written with values 0111 and 0000, respectively.</li>
+                    <li>The memory can hold four data blocks: A, B, C, and D. Their block addresses are 00, 01, 10, and 11, respectively.</li>
+                    <li>We employ a block encryption function that produces the following 4-bit encrypted value given some 4-bit input (shown in the table below)</li>
+                </ul>
+                <div id="q2_table_container">
+                </div>
+                <p>Suppose that initially, blocks A and B are cached, but C and D are not. Blocks A and B are dirty and recently written with values of <span id="q1_block_a"></span> and <span id="q1_block_b"></span>, respectively.</p>              
+                <p>Assume a 4 bit global counter with an initial value of <span id="q2_counter"></span>. The encryption seed used when writing block A to memory is <code>____</code>. It's pad is <code>____</code>, and the cipher text of A that is written to memory is <code>____</code>, the global counter value after A is written is <code>____</code>.</p>
             </div>
             <div class="answer" id="q2_answer">
+                <h3 id="question_2_answers">Question 2 answers</h3>
+           
+            </div>            
+        </div>
 
-            </div>
-        </div> 
+
+
+
+
+        
         <div class="button-container">
             <button class="left-button" id="prevQuestion" onclick="prevQuestion();">Previous</button>
             <button class="center-button" onclick="showAnswer('q1_answer');">Show Answers</button>
             <button class="right-button" id="nextQuestion" onclick="nextQuestion();">Next</button>
         </div>
+
+
         <script src="./js/functions.js"></script>
     </body>
 </html>

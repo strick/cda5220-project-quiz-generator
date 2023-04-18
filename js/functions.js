@@ -10,8 +10,10 @@ function generateQuestion1()
 {
 
     hideAnswer('q1_answer');
+
+    var table = document.getElementById(q1Table);
     
-    buildTable(q1Table,q1KeyPairs);
+    buildTable(table,q1KeyPairs);
     setBlockValue(q1BlockA, getRandomFourBit());
     setBlockValue(q1BlockB, getRandomFourBit());
     setBlockValue(q1Counter, getRandomFourBit());
@@ -28,52 +30,38 @@ function generateQuestion1()
 
 function loadQuestion2()
 {
+    hideAnswer('q2_answer');
+
+    insertTable("q2_table_container");
+
     document.getElementById("q2").style.display = "inherit";
 }
 
-function setBlockValue(id, value)
+function insertTable(tableContainerId)
 {
-    const mySpan = document.getElementById(id);
+    const keyPairs = getTablePairs();
+    const tableContainer = document.getElementById(tableContainerId);
 
-    mySpan.textContent = value;
-}
+    // If there isn't a table yet, build it
+    if(tableContainer.children.length == 0){
 
-function getBlockValue(id)
-{
-    const mySpan = document.getElementById(id);
-
-    return mySpan.textContent;
-}
-
-function getRandomFourBit()
-{
-    // Generate a random integer between 0 and 15 (inclusive)
-    const randomInt = Math.floor(Math.random() * 16);
- 
-    // Convert the integer to a 4-bit binary string
-    const encryptionKey = ("000" + randomInt.toString(2)).slice(-4);
-
-    return encryptionKey;
+        // Create the table
+        var table = document.createElement('table');        
+        buildTable(table, keyPairs);
+        tableContainer.appendChild(table);
+        
+    }
 }
 
 function buildTable(table, inputEncryptionPairs)
 {
-    const myTable = document.getElementById(table);
-    if(myTable.rows.length > 0)
+    console.log("building");
+    const myTable = table;
+    if(myTable.rows.length > 0){
+        console.log("Table already built");
         return;
+    }
 
-    /*
-    for (const inputValue in inputEncryptionPairs) {
-        // Create a new row element
-        const row = myTable.insertRow();
-        // Create two new cell elements
-        const inputCell = row.insertCell();
-        const encryptionKeyCell = row.insertCell();
-        // Set the text content of the cells to the input value and encryption key, respectively
-        inputCell.textContent = inputValue;
-        encryptionKeyCell.textContent = inputEncryptionPairs[inputValue];
-      }
-      */
     const inputRow = myTable.insertRow();
     // Create the input value header cell
     const inputValueHeaderCell = inputRow.insertCell();
@@ -81,7 +69,7 @@ function buildTable(table, inputEncryptionPairs)
     inputValueHeaderCell.textContent = "Input, i.e. x";
 
     // Loop through the inputEncryptionPairs object and create a new cell for each input value
-    for (const inputValue in inputEncryptionPairs) {
+    for (const inputValue in inputEncryptionPairs) {       
         const cell = inputRow.insertCell();
         cell.textContent = inputValue;
     }
@@ -218,3 +206,47 @@ function clearQuestions()
         elements[i].style.display = "none";
     }
 }
+
+function clearFormating()
+{
+
+}
+
+function setBlockValue(id, value)
+{
+    const mySpan = document.getElementById(id);
+
+    mySpan.textContent = value;
+}
+
+function getBlockValue(id)
+{
+    const mySpan = document.getElementById(id);
+
+    return mySpan.textContent;
+}
+
+function getRandomFourBit()
+{
+    // Generate a random integer between 0 and 15 (inclusive)
+    const randomInt = Math.floor(Math.random() * 16);
+ 
+    // Convert the integer to a 4-bit binary string
+    const encryptionKey = ("000" + randomInt.toString(2)).slice(-4);
+
+    return encryptionKey;
+}
+
+    
+    /*
+    for (const inputValue in inputEncryptionPairs) {
+        // Create a new row element
+        const row = myTable.insertRow();
+        // Create two new cell elements
+        const inputCell = row.insertCell();
+        const encryptionKeyCell = row.insertCell();
+        // Set the text content of the cells to the input value and encryption key, respectively
+        inputCell.textContent = inputValue;
+        encryptionKeyCell.textContent = inputEncryptionPairs[inputValue];
+      }
+      */
