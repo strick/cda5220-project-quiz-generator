@@ -123,23 +123,32 @@ function showAnswer(id)
     var b = calculateDirectEncryption(getBlockValue(q1BlockB), q1KeyPairs);
 
     // Find the encrypted value column and highlight it
+    var aIndex = findAnswerIndex(a, q1KeyPairs, q1BlockA, 'red');
+    var bIndex = findAnswerIndex(b, q1KeyPairs, q1BlockB, 'blue');
+
+}
+
+function findAnswerIndex(value, q1KeyPairs, block, color)
+{
     var index = 1;
+
     for (const inputValue in q1KeyPairs) {
 
         // If it's the answer save the index
-        if(a == q1KeyPairs[inputValue] && getBlockValue(q1BlockA) == inputValue){
+        if(value == q1KeyPairs[inputValue] && getBlockValue(block) == inputValue){
             break;
         }
 
         index++;
     }
 
-    // Get the table and update the column
     var table = document.getElementById(q1Table);
     const cells = table.getElementsByTagName("td");
     cells[index].classList.add('answer'); // Input
+    cells[index].classList.add(color); // Input
     cells[index+17].classList.add('answer'); // Output
-
+    cells[index+17].classList.add(color); // Output
+    document.getElementById(block).classList.add(color);
 }
 
 function hideAnswer(id)
