@@ -33,8 +33,43 @@ function loadQuestion2()
     hideAnswer('q2_answer');
 
     insertTable("q2_table_container");
+    setBlockValue("q2_counter", getRandomFourBit());
+    setBlockValue("q2_block_a", getRandomFourBit());
 
     document.getElementById("q2").style.display = "inherit";
+}
+
+function showQuestion2Answer()
+{
+    setBlockValue("q2_seed_address", getBlockValue("q2_block_a"));
+    setBlockValue("q2_seed_counter", getBlockValue("q2_counter"));
+
+    var seed = calculateSeed(
+        getBlockValue("q2_seed_address"),
+        getBlockValue("q2_seed_counter"),        
+    );
+
+    setBlockValue("q2_seed", seed);
+}
+
+function calculateSeed(address, counter)
+{
+    var seed = address + increaseCounter(counter);
+    return seed;
+}
+
+function increaseCounter(counter)
+{
+    // Parse binary number as base-2 integer
+    let decimal = parseInt(counter, 2);
+
+    // Add 1 to decimal number
+    decimal += 1;
+
+    // Convert decimal number back to binary
+    binary = decimal.toString(2);
+
+    return binary
 }
 
 function insertTable(tableContainerId)
@@ -117,17 +152,28 @@ function calculateDirectEncryption(input, inputEncryptionPairs)
     return inputEncryptionPairs[input];
 }
 
-function showAnswer(id)
+function showAnswer()
 {
-    document.getElementById(id).style.display = "inherit";
+    document.getElementById("q" + currentQuestion + "_answer").style.display = "inherit";
 
+    switch(currentQuestion){
+        case 1:
+            showAnswer1();
+            break;
+        case 2:
+            showQuestion2Answer();
+            break;
+    }
+}
+
+function showAnswer1()
+{
     var a = calculateDirectEncryption(getBlockValue(q1BlockA), q1KeyPairs);
     var b = calculateDirectEncryption(getBlockValue(q1BlockB), q1KeyPairs);
 
     // Find the encrypted value column and highlight it
     var aIndex = findAnswerIndex(a, q1KeyPairs, q1BlockA, 'red');
     var bIndex = findAnswerIndex(b, q1KeyPairs, q1BlockB, 'blue');
-
 }
 
 function findAnswerIndex(value, q1KeyPairs, block, color)
@@ -161,7 +207,7 @@ function hideAnswer(id)
 function init()
 { 
     clearQuestions();
-    currentQuestion = 1;
+    currentQuestion = 2;
     loadQuestion();
 
 }
