@@ -161,11 +161,17 @@ function buildTable(table, inputEncryptionPairs)
     const inputValueHeaderCell = inputRow.insertCell();
     
     inputValueHeaderCell.textContent = "Input, i.e. x";
+    inputValueHeaderCell.classList.add('shaded');
 
+    let shade = false;
     // Loop through the inputEncryptionPairs object and create a new cell for each input value
     for (const inputValue in inputEncryptionPairs) {       
         const cell = inputRow.insertCell();
         cell.textContent = inputValue;
+        if(shade){
+            cell.classList.add('shaded');
+        }
+        shade = !shade;
     }
 
     // Create the second row for encryption keys
@@ -174,11 +180,16 @@ function buildTable(table, inputEncryptionPairs)
     // Create the encryption key header cell
     const encryptionKeyHeaderCell = encryptionKeyRow.insertCell();
     encryptionKeyHeaderCell.textContent = "Encryption Output, i.e. E_K(x";
+    encryptionKeyHeaderCell.classList.add('shaded');
     
     // Loop through the inputEncryptionPairs object and create a new cell for each encryption key
     for (const inputValue in inputEncryptionPairs) {
         const cell = encryptionKeyRow.insertCell();
         cell.textContent = inputEncryptionPairs[inputValue];
+        if(shade){
+            cell.classList.add('shaded');
+        }
+        shade = !shade;
     }
 }
 

@@ -47,3 +47,7 @@ body {
 .right-button {
     margin-left: auto;
 }
+
+.shaded {
+    background-color: lightgray;
+}
