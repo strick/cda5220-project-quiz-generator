@@ -66,12 +66,12 @@ function buildTable(table, inputEncryptionPairs)
       */
       const inputRow = myTable.insertRow();
      // Create the input value header cell
-const inputValueHeaderCell = inputRow.insertCell();
-inputValueHeaderCell.textContent = "Input, i.e. x";
-// Loop through the inputEncryptionPairs object and create a new cell for each input value
-for (const inputValue in inputEncryptionPairs) {
-  const cell = inputRow.insertCell();
-  cell.textContent = inputValue;
+        const inputValueHeaderCell = inputRow.insertCell();
+        inputValueHeaderCell.textContent = "Input, i.e. x";
+        // Loop through the inputEncryptionPairs object and create a new cell for each input value
+        for (const inputValue in inputEncryptionPairs) {
+        const cell = inputRow.insertCell();
+        cell.textContent = inputValue;
 }
 
 // Create the second row for encryption keys

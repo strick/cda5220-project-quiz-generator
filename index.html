@@ -4,47 +4,10 @@
         <meta charset="UTF-8">
         <title>Merkle Tree Quiz</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+        <link rel="stylesheet" href="./main.css">
         <link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">        
-        <style>
-            /* From extension vscode.github */
-            /*---------------------------------------------------------------------------------------------
-                *  Copyright (c) Microsoft Corporation. All rights reserved.
-                *  Licensed under the MIT License. See License.txt in the project root for license information.
-                *--------------------------------------------------------------------------------------------*/
-            
-            .vscode-dark img[src$=\#gh-light-mode-only],
-            .vscode-light img[src$=\#gh-dark-mode-only] {
-                display: none;
-            }
-            body {
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
-                font-size: 14px;
-                line-height: 1.6;
-            }
-
-            .task-list-item {
-                list-style-type: none;
-            }
-
-            .task-list-item-checkbox {
-                margin-left: -20px;
-                vertical-align: middle;
-                pointer-events: none;
-            }
-            .answer {
-                font-weight: bold;                
-            }
-
-            .red {
-                border: 1px solid red !important;
-            }
-
-            .blue {
-                border: 1px solid blue !important;
-            }
-        </style>
     </head>
     <body class="vscode-body vscode-light">
         <h1 id="merkle-tree-quiz">Merkle Tree Quiz</h1>
@@ -68,8 +31,10 @@
                 <p>a. Assuming a direct encryption scheme (i.e. electronic codebook mode) the encryption of block A is <code>___</code>. The encryption of block B is <code>___</code>.</p>
                 <p>b. Assume a 4 bit global counter with an initial value of <span id="q1_counter"></span>. The encryption seed used when writting block A to memory is <code>____</code>. It's pad is <code>____</code>, and the cipher text of A that is written to memory is <code>____</code>, the global counter value after A is written is <code>____</code>.</p>
             </div>
-            <div>
-                <button onclick="showAnswer('q1_answer');">Show Answers</button>
+            <div class="button-container">
+                <button class="left-button">Previous</button>
+                <button class="center-button" onclick="showAnswer('q1_answer');">Show Answers</button>
+                <button class="right-button">Next</button>
             </div>
             <div class="answer" id="q1_answer">
                 <h3 id="question-1-answers">Question 1 answers</h3>
@@ -79,7 +44,12 @@
                 </ul>
             </div>
         </div>
-        <script src="./functions.js"></script>
+        <div class="question_group" id="q2">
+            <div class="question">
+                <h2 id="question-2">Question 2</h2>
+            </div>
+        </div> 
+        <script src="./js/functions.js"></script>
         <script>            
             generateQuestion1();
         </script>
