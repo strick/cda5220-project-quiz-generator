@@ -241,7 +241,7 @@ function hideAnswer(id)
 function init()
 { 
     clearQuestions();
-    currentQuestion = 2;
+    currentQuestion = 1;
     loadQuestion();
 
 }
