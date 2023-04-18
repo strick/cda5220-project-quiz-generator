@@ -52,6 +52,13 @@ function loadQuestion2()
     document.getElementById("q2").style.display = "inherit";
 }
 
+function loadQuestion3()
+{
+    hideAnswer('q3_answer');
+
+    document.getElementById("q3").style.display = "inherit";
+}
+
 function showQuestion2Answer()
 {
     var address = getBlockValue("q2_block_a");
@@ -119,7 +126,7 @@ function increaseCounter(counter)
 
 function insertTable(tableContainerId)
 {
-    // Remove curren table if it's there,
+    // Remove current table if it's there,
     let parent = document.getElementById(tableContainerId);
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
@@ -215,6 +222,8 @@ function showAnswer()
         case 2:
             showQuestion2Answer();
             break;
+        case 3:
+            break;
     }
 }
 
@@ -281,8 +290,8 @@ function loadQuestion()
 {
     clearQuestions();
 
-    if(currentQuestion > 2)
-        currentQuestion = 2;
+    if(currentQuestion > 3)
+        currentQuestion = 3;
     if(currentQuestion < 1)
         currentQuestion = 1;
 
@@ -292,6 +301,10 @@ function loadQuestion()
             break;
         case 2:
             loadQuestion2();
+            break;
+        case 3:
+            loadQuestion3();
+            break;
         default:
             ;           
     }
@@ -313,6 +326,10 @@ function regenerate()
             break;
         case 2:
             loadQuestion2();
+            break;
+        case 3:
+            loadQuestion3();
+            break;
         default:
             ;           
     }
