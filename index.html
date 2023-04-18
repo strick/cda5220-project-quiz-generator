@@ -21,12 +21,8 @@
                     <li>The memory can hold four data blocks: A, B, C, and D. Their block addresses are 00, 01, 10, and 11, respectively.</li>
                     <li>We employ a block encryption function that produces the following 4-bit encrypted value given some 4-bit input (shown in the table below)</li>
                 </ul>
-                <table id="q1_table">
-                    <thead>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+                <div id="q1_table_container">
+                </div> 
                 <p>Suppose that initially, blocks A and B are cached, but C and D are not. Blocks A and B are dirty and recently written with values of <span id="q1_block_a"></span> and <span id="q1_block_b"></span>, respectively.</p>
                 <p>Assuming a direct encryption scheme (i.e. electronic codebook mode) the encryption of block A is <code>___</code>. The encryption of block B is <code>___</code>.</p>
             </div>
@@ -77,6 +73,7 @@
         <div class="button-container">
             <button class="left-button" id="prevQuestion" onclick="prevQuestion();">Previous</button>
             <button class="center-button" onclick="showAnswer();">Show Answers</button>
+            <button class="center-button" onclick="regenerate();">Regenerate</button>
             <button class="right-button" id="nextQuestion" onclick="nextQuestion();">Next</button>
         </div>
 

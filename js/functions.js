@@ -1,4 +1,4 @@
-const q1Table = "q1_table";
+var q1Table;
 const q1BlockA = "q1_block_a";
 const q1BlockB = "q1_block_b";
 const q1KeyPairs = getTablePairs();
@@ -11,9 +11,11 @@ function generateQuestion1()
 
     hideAnswer('q1_answer');
 
-    var table = document.getElementById(q1Table);
+    //var table = document.getElementById(q1Table);
+
+    q1KeyPairs, q1Table = insertTable("q1_table_container");
     
-    buildTable(table,q1KeyPairs);
+    //buildTable(table,q1KeyPairs);
     setBlockValue(q1BlockA, getRandomFourBit());
     setBlockValue(q1BlockB, getRandomFourBit());
         
@@ -31,7 +33,7 @@ function loadQuestion2()
 {
     hideAnswer('q2_answer');
 
-    q2KeyPairs = insertTable("q2_table_container");
+    q2KeyPairs, table = insertTable("q2_table_container");
     setBlockValue("q2_counter", getRandomFourBit());
     setBlockValue("q2_block_a", getRandomFourBit());
 
@@ -117,7 +119,7 @@ function insertTable(tableContainerId)
         tableContainer.appendChild(table);        
     }
 
-    return keyPairs;
+    return keyPairs, table;
 }
 
 function buildTable(table, inputEncryptionPairs)
@@ -222,8 +224,8 @@ function findAnswerIndex(value, q1KeyPairs, block, color)
         index++;
     }
 
-    var table = document.getElementById(q1Table);
-    const cells = table.getElementsByTagName("td");
+    //var table = document.getElementById(q1Table);
+    const cells = q1Table.getElementsByTagName("td");
     cells[index].classList.add('answer'); // Input
     cells[index].classList.add(color); // Input
     cells[index+17].classList.add('answer'); // Output
@@ -285,9 +287,17 @@ function clearQuestions()
     }
 }
 
-function clearFormating()
+function regenerate()
 {
-
+    switch(currentQuestion){
+        case 1:
+            generateQuestion1();
+            break;
+        case 2:
+            loadQuestion2();
+        default:
+            ;           
+    }
 }
 
 function setBlockValue(id, value)
