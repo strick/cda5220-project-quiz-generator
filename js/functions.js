@@ -119,7 +119,7 @@ function increaseCounter(counter)
     decimal += 1;
 
     // Convert decimal number back to binary
-    binary = decimal.toString(2);
+    binary = decimal.toString(2).padEnd(4, '0');
 
     return binary
 }
