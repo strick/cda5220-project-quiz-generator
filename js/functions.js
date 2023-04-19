@@ -242,8 +242,8 @@ function insertTable(tableContainerId, encryptionLength = 4)
 
 function buildTable(table, inputEncryptionPairs)
 {
-    console.log("building");
-    console.log(inputEncryptionPairs);
+    //console.log("building");
+    //console.log(inputEncryptionPairs);
     const myTable = table;
     if(myTable.rows.length > 0){
         console.log("Table already built");
@@ -286,8 +286,8 @@ function buildTable(table, inputEncryptionPairs)
         shade = !shade;
     }
 
-    console.log("Done buliding");
-    console.log(inputEncryptionPairs);
+    //console.log("Done buliding");
+    //console.log(inputEncryptionPairs);
 }
 
 function getTablePairs(encryptionLength = 4)
