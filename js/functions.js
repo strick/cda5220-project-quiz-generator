@@ -73,6 +73,9 @@ function showQuestion3Answer()
 
     clockTick = increaseCounter(clockTick);
     setBlockValue("q3_b_answer", clockTick);
+
+    let recycledTime = (parseInt(1111, 2) - parseInt(clockTick, 2)) + 1;
+    setBlockValue("q3_c_answer", recycledTime);
 }
 
 function showQuestion2Answer()
