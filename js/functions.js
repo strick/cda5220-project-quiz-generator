@@ -180,7 +180,7 @@ function increaseCounter(counter)
     return binary
 }
 
-function insertTable(tableContainerId)
+function insertTable(tableContainerId, encryptionLength = 4)
 {
     // Remove current table if it's there,
     let parent = document.getElementById(tableContainerId);
@@ -188,7 +188,7 @@ function insertTable(tableContainerId)
         parent.removeChild(parent.firstChild);
     }
 
-    const keyPairs = getTablePairs();
+    const keyPairs = getTablePairs(encryptionLength);
     const tableContainer = document.getElementById(tableContainerId);
 
     // If there isn't a table yet, build it
@@ -256,17 +256,23 @@ function buildTable(table, inputEncryptionPairs)
     console.log(inputEncryptionPairs);
 }
 
-function getTablePairs()
+function getTablePairs(encryptionLength = 4)
 {
      // Define an array of possible input values
      const inputValues = ["0000", "0001", "0010", "0011", "0100", "0101", "0110", "0111", "1000", "1001", "1010", "1011", "1100", "1101", "1110", "1111"];
      const inputEncryptionPairs = {};
+     let encryptionKey;
  
      // Loop through the input values array
      for (let i = 0; i < inputValues.length; i++) {
  
          // Convert the integer to a 4-bit binary string
-         const encryptionKey = getRandomFourBit();
+         if(encryptionLength == 4){
+            encryptionKey = getRandomFourBit();
+         }
+         else if(encryptionLength == 2){
+            encryptionKey = getRandomTwoBit();
+         }
  
          inputEncryptionPairs[inputValues[i]] = encryptionKey
      }
@@ -370,7 +376,7 @@ function prevQuestion()
 function loadQuestion()
 {
     clearQuestions();
-
+///currentQuestion = 1;
     if(currentQuestion > 4)
         currentQuestion = 5;
     if(currentQuestion < 1)
@@ -451,6 +457,17 @@ function getRandomFourBit()
     const encryptionKey = ("000" + randomInt.toString(2)).slice(-4);
 
     return encryptionKey;
+}
+
+function getRandomTwoBit()
+{
+    // Generate a random integer between 0 and 3 (inclusive)
+    const randomInt = Math.floor(Math.random() * 4);
+ 
+    // Convert the integer to a 2-bit binary string
+    const binaryString = ("00" + randomInt.toString(2)).slice(-2);
+
+    return binaryString;
 }
 
     
