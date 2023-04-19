@@ -74,6 +74,16 @@ function loadQuestion5()
 {
     hideAnswer('q5_answer');
 
+    let l1 = getRandomFourBit();
+    let l2 = getRandomFourBit();
+    let l3 = getRandomFourBit();
+    let l4 = getRandomFourBit();
+
+    setBlockValue("q5_l1", l1);
+    setBlockValue("q5_l2", l2);
+    setBlockValue("q5_l3", l3);
+    setBlockValue("q5_l4", l4);
+
     let data = insertTable("q5_table_container", 2);
     q2KeyPairs = data.keyPairs;
 
@@ -120,14 +130,15 @@ function showQuestion3Answer()
     setBlockValue("q3_c_answer", recycledTime);
 }
 
-function showQuestion4Answer()
-{
-
-}
+function showQuestion4Answer(){}
 
 function showQuestion5Answer()
 {
+    let l1 = getBlockValue("q5_l1");
+    let l2 = getBlockValue("q5_l2");
 
+    setBlockValue("q5_a_l1_value", l1);
+    setBlockValue("q5_a_l2_value", l2);
 }
 
 function calculateCounterCipher(address, pad)
