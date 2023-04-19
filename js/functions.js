@@ -183,7 +183,28 @@ function showQuestion5Answer()
 
 function showQuestion6Answer()
 {
+    let hash = getBlockValue("q6_hash_value");
+    let byte = getBlockValue("q6_byte_value");
 
+    // Do arity calculation
+    let arity = calculateArity(byte, hash);
+
+    setBlockValue("q6_a_answer_byte_value", byte);
+    setBlockValue("q6_a_answer_byte_to_bit_value", byte * 8);
+    setBlockValue("q6_a_answer_byte_to_bit_value2", byte * 8);
+    setBlockValue("q6_a_answer_hash_value", hash);
+    setBlockValue("q6_a_answer", arity);
+}
+
+function calculateArity(byte, hash)
+{
+    // Convert bytes to bits
+    let byteBits = byte * 8;
+
+    // Calculate
+    let arity = byteBits / hash;
+
+    return arity;
 }
 
 function generateHashAndByteBlock()
@@ -203,12 +224,12 @@ function generateHashAndByteBlock()
     let byte = 0;
   
     // Ensure the first number is always larger than the second
-    if (num1 < num2) {
-      hash = num2;
-      byte = num1;
-    } else {
+    if ((num1 * 8) < num2) {
+      byte = num2;
       hash = num1;
-      byte = num2
+    } else {
+      byte = num1;
+      hash = num2
     }
 
     return {
