@@ -135,29 +135,40 @@ function showQuestion4Answer(){}
 
 function showQuestion5Answer()
 {
-    let l1 = getBlockValue("q5_l1");
-    let l2 = getBlockValue("q5_l2");
-    let l3 = getBlockValue("q5_l3");
-    let l4 = getBlockValue("q5_l4");
+    const values = {
+        l1: getBlockValue("q5_l1"),
+        l2: getBlockValue("q5_l2"),
+        l3: getBlockValue("q5_l3"),
+        l4: getBlockValue("q5_l4")
+    };
 
     // Set the E(l1) and E(l2)
-    let l1_hash = calculateDirectEncryption(l1, q5KeyPairs);
-    let l2_hash = calculateDirectEncryption(l2, q5KeyPairs);
-    let l3_hash = calculateDirectEncryption(l3, q5KeyPairs);
-    let l4_hash = calculateDirectEncryption(l4, q5KeyPairs);
-    setBlockValue("q5_a_l1_hash", l1_hash);
-    setBlockValue("q5_a_l2_hash", l2_hash);
-    setBlockValue("q5_a_l3_hash", l3_hash);
-    setBlockValue("q5_a_l4_hash", l4_hash);
+    const hashes = {
+        l1_hash: calculateDirectEncryption(values['l1'], q5KeyPairs),
+        l2_hash: calculateDirectEncryption(values['l2'], q5KeyPairs),
+        l3_hash: calculateDirectEncryption(values['l3'], q5KeyPairs),
+        l4_hash: calculateDirectEncryption(values['l4'], q5KeyPairs)
+    };
 
     // Set the concat
-    setBlockValue("q5_a_l1_l2_concat", (l1_hash + l2_hash));
-    setBlockValue("q5_a_l3_l4_concat", (l3_hash + l4_hash));
+    setBlockValue("q5_a_l1_l2_concat", (hashes['l1_hash'] + hashes['l2_hash']));
+    setBlockValue("q5_a_l3_l4_concat", (hashes['l3_hash'] + hashes['l4_hash']));
+    setBlockValue("q5_c_l1_l2_concat", (hashes['l1_hash'] + hashes['l2_hash']));
+    setBlockValue("q5_c_l3_l4_concat", (hashes['l3_hash'] + hashes['l4_hash']));
 
-    setBlockValue("q5_a_l1_value", l1);
-    setBlockValue("q5_a_l2_value", l2);
-    setBlockValue("q5_a_l3_value", l3);
-    setBlockValue("q5_a_l4_value", l4);
+    let l1_l2_hash = calculateDirectEncryption((hashes['l1_hash'] + hashes['l2_hash']), q5KeyPairs);
+    let l3_l4_hash = calculateDirectEncryption((hashes['l3_hash'] + hashes['l4_hash']), q5KeyPairs);
+    setBlockValue("q5_c_l1_l2_hash", l1_l2_hash);
+    setBlockValue("q5_c_l3_l4_hash", l3_l4_hash);
+    setBlockValue("q5_c_root_value", l1_l2_hash + l3_l4_hash);
+
+    // Part C
+    for(i=1; i<5; i++){
+        // Update DOM with the hash vlaues
+        setBlockValue(`q5_c_l${i}_hash`, hashes[`l${i}_hash`]);
+        setBlockValue(`q5_a_l${i}_hash`, hashes[`l${i}_hash`]);
+        setBlockValue(`q5_a_l${i}_value`, values[`l${i}`]);
+    }
 }
 
 function calculateCounterCipher(address, pad)
