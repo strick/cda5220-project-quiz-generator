@@ -3,6 +3,7 @@ const q1BlockA = "q1_block_a";
 const q1BlockB = "q1_block_b";
 var q1KeyPairs = null;//getTablePairs();
 var q2KeyPairs = null;//getTablePairs();
+var q5KeyPairs = null;
 const q1BlockAAns = "q1_block_a_ans";
 var currentQuestion = 0;
 
@@ -85,7 +86,7 @@ function loadQuestion5()
     setBlockValue("q5_l4", l4);
 
     let data = insertTable("q5_table_container", 2);
-    q2KeyPairs = data.keyPairs;
+    q5KeyPairs = data.keyPairs;
 
     document.getElementById("q5").style.display = "inherit"; 
 }
@@ -137,6 +138,15 @@ function showQuestion5Answer()
     let l1 = getBlockValue("q5_l1");
     let l2 = getBlockValue("q5_l2");
 
+    // Set the E(l1) and E(l2)
+    let l1_hash = calculateDirectEncryption(l1, q5KeyPairs);
+    let l2_hash = calculateDirectEncryption(l2, q5KeyPairs);
+    setBlockValue("q5_a_l1_hash", l1_hash);
+    setBlockValue("q5_a_l2_hash", l2_hash);
+
+    // Set the concat
+    setBlockValue("q5_a_l1_l2_concat", (l1_hash + l2_hash));
+
     setBlockValue("q5_a_l1_value", l1);
     setBlockValue("q5_a_l2_value", l2);
 }
@@ -161,7 +171,7 @@ function calculatePad(seed)
 
     var pad = calculateDirectEncryption(seed, q2KeyPairs);
 
-    console.log(q2KeyPairs);
+    //console.log(q2KeyPairs);
     return pad;
 }
 
@@ -301,8 +311,8 @@ function getTablePairs(encryptionLength = 4)
 
 function calculateDirectEncryption(input, inputEncryptionPairs)
 {
-    console.log(input);
-    console.log(inputEncryptionPairs);
+    //console.log(input);
+    //console.log(inputEncryptionPairs);
     return inputEncryptionPairs[input];
 }
 
