@@ -137,18 +137,27 @@ function showQuestion5Answer()
 {
     let l1 = getBlockValue("q5_l1");
     let l2 = getBlockValue("q5_l2");
+    let l3 = getBlockValue("q5_l3");
+    let l4 = getBlockValue("q5_l4");
 
     // Set the E(l1) and E(l2)
     let l1_hash = calculateDirectEncryption(l1, q5KeyPairs);
     let l2_hash = calculateDirectEncryption(l2, q5KeyPairs);
+    let l3_hash = calculateDirectEncryption(l3, q5KeyPairs);
+    let l4_hash = calculateDirectEncryption(l4, q5KeyPairs);
     setBlockValue("q5_a_l1_hash", l1_hash);
     setBlockValue("q5_a_l2_hash", l2_hash);
+    setBlockValue("q5_a_l3_hash", l3_hash);
+    setBlockValue("q5_a_l4_hash", l4_hash);
 
     // Set the concat
     setBlockValue("q5_a_l1_l2_concat", (l1_hash + l2_hash));
+    setBlockValue("q5_a_l3_l4_concat", (l3_hash + l4_hash));
 
     setBlockValue("q5_a_l1_value", l1);
     setBlockValue("q5_a_l2_value", l2);
+    setBlockValue("q5_a_l3_value", l3);
+    setBlockValue("q5_a_l4_value", l4);
 }
 
 function calculateCounterCipher(address, pad)
