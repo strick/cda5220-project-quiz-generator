@@ -64,6 +64,12 @@ function loadQuestion3()
     document.getElementById("q3").style.display = "inherit";
 }
 
+function loadQuestion4()
+{
+    hideAnswer('q4_answer');
+    document.getElementById("q4").style.display = "inherit";    
+}
+
 function showQuestion3Answer()
 {
     let clockTick = getBlockValue("q3_tick");
@@ -76,6 +82,11 @@ function showQuestion3Answer()
 
     let recycledTime = (parseInt(1111, 2) - parseInt(clockTick, 2)) + 1;
     setBlockValue("q3_c_answer", recycledTime);
+}
+
+function showQuestion4Answer()
+{
+
 }
 
 function showQuestion2Answer()
@@ -271,6 +282,9 @@ function showAnswer()
         case 3:
             showQuestion3Answer();
             break;
+        case 4:
+            showQuestion4Answer();
+            break;
     }
 }
 
@@ -338,7 +352,7 @@ function loadQuestion()
     clearQuestions();
 
     if(currentQuestion > 3)
-        currentQuestion = 3;
+        currentQuestion = 4;
     if(currentQuestion < 1)
         currentQuestion = 1;
 
@@ -351,6 +365,9 @@ function loadQuestion()
             break;
         case 3:
             loadQuestion3();
+            break;
+        case 4:
+            loadQuestion4();
             break;
         default:
             ;           
@@ -376,6 +393,9 @@ function regenerate()
             break;
         case 3:
             loadQuestion3();
+            break;
+        case 4:
+            loadQuestion4();
             break;
         default:
             ;           
