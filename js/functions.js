@@ -187,7 +187,7 @@ function showQuestion6Answer()
     let byte = getBlockValue("q6_byte_value");
 
     // Do arity calculation
-    let arity = calculateArity(byte, hash);
+    let arity = calculateMaxArity(byte, hash);
 
     setBlockValue("q6_a_answer_byte_value", byte);
     setBlockValue("q6_a_answer_byte_to_bit_value", byte * 8);
@@ -201,7 +201,7 @@ function showQuestion6Answer()
     
 }
 
-function calculateArity(byte, hash)
+function calculateMaxArity(byte, hash)
 {
     // Convert bytes to bits
     let byteBits = byte * 8;
