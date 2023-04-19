@@ -91,6 +91,11 @@ function loadQuestion5()
     document.getElementById("q5").style.display = "inherit"; 
 }
 
+function loadQuestion6()
+{
+    hideAnswer('q6_answer');
+    document.getElementById("q6").style.display = "inherit";    
+}
 
 function showQuestion2Answer()
 {
@@ -169,6 +174,11 @@ function showQuestion5Answer()
         setBlockValue(`q5_a_l${i}_hash`, hashes[`l${i}_hash`]);
         setBlockValue(`q5_a_l${i}_value`, values[`l${i}`]);
     }
+}
+
+function showQuestion6Answer()
+{
+
 }
 
 function calculateCounterCipher(address, pad)
@@ -356,6 +366,9 @@ function showAnswer()
         case 5:
             showQuestion5Answer();
             break;
+        case 6:
+            showQuestion6Answer();
+            break;
     }
 }
 
@@ -421,9 +434,9 @@ function prevQuestion()
 function loadQuestion()
 {
     clearQuestions();
-    //currentQuestion = 5;
-    if(currentQuestion > 4)
-        currentQuestion = 5;
+    currentQuestion = 6;
+    if(currentQuestion > 5)
+        currentQuestion = 6;
     if(currentQuestion < 1)
         currentQuestion = 1;
 
@@ -442,6 +455,9 @@ function loadQuestion()
             break;
         case 5:
             loadQuestion5();
+            break;
+        case 6:
+            loadQuestion6();
             break;
         default:
             ;           
@@ -473,6 +489,9 @@ function regenerate()
             break;
         case 5:
             loadQuestion5();
+            break;
+        case 6:
+            loadQuestion6();
             break;
         default:
             ;           
