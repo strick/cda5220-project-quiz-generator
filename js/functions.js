@@ -73,9 +73,11 @@ function loadQuestion4()
 function showQuestion3Answer()
 {
     let clockTick = getBlockValue("q3_tick");
+    console.log("Tick is: " + clockTick);
 
     clockTick = increaseCounter(clockTick);
     setBlockValue("q3_a_answer", clockTick);
+    console.log("Tick after inccrease is " + clockTick);
 
     clockTick = increaseCounter(clockTick);
     setBlockValue("q3_b_answer", clockTick);
@@ -126,11 +128,10 @@ function calculateCounterCipher(address, pad)
 
 function calculatePad(seed)
 {
-    console.log("Seed: " + seed);
+
     // Force seed to 4 bit
     seed = seed.substr(seed.length - 4, seed.length - 1);
 
-    console.log("Sub Seed: " + seed);
     var pad = calculateDirectEncryption(seed, q2KeyPairs);
 
     console.log(q2KeyPairs);
@@ -145,7 +146,6 @@ function calculateSeed(address, counter)
 
 function increaseCounter(counter)
 {
-    console.log(counter);
     if(counter == "1111"){
         counter = "0000";
         let decimal = parseInt(counter, 2);
@@ -153,12 +153,17 @@ function increaseCounter(counter)
     }
     // Parse binary number as base-2 integer
     let decimal = parseInt(counter, 2);
-
     // Add 1 to decimal number
     decimal += 1;
 
     // Convert decimal number back to binary
-    binary = decimal.toString(2).padEnd(4, '0');
+    if(decimal < 8){
+        binary = decimal.toString(2).padStart(4, '0');
+    }
+    else {
+        binary = decimal.toString(2).padEnd(4, '0');
+    }
+
 
     return binary
 }
