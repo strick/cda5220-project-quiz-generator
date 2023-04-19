@@ -73,6 +73,10 @@ function loadQuestion4()
 function loadQuestion5()
 {
     hideAnswer('q5_answer');
+
+    let data = insertTable("q5_table_container", 2);
+    q2KeyPairs = data.keyPairs;
+
     document.getElementById("q5").style.display = "inherit"; 
 }
 
@@ -376,7 +380,7 @@ function prevQuestion()
 function loadQuestion()
 {
     clearQuestions();
-///currentQuestion = 1;
+    currentQuestion = 5;
     if(currentQuestion > 4)
         currentQuestion = 5;
     if(currentQuestion < 1)
