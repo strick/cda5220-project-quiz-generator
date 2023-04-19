@@ -70,26 +70,12 @@ function loadQuestion4()
     document.getElementById("q4").style.display = "inherit";    
 }
 
-function showQuestion3Answer()
+function loadQuestion5()
 {
-    let clockTick = getBlockValue("q3_tick");
-    console.log("Tick is: " + clockTick);
-
-    clockTick = increaseCounter(clockTick);
-    setBlockValue("q3_a_answer", clockTick);
-    console.log("Tick after inccrease is " + clockTick);
-
-    clockTick = increaseCounter(clockTick);
-    setBlockValue("q3_b_answer", clockTick);
-
-    let recycledTime = (parseInt(1111, 2) - parseInt(clockTick, 2)) + 1;
-    setBlockValue("q3_c_answer", recycledTime);
+    hideAnswer('q5_answer');
+    document.getElementById("q5").style.display = "inherit"; 
 }
 
-function showQuestion4Answer()
-{
-
-}
 
 function showQuestion2Answer()
 {
@@ -112,6 +98,32 @@ function showQuestion2Answer()
     setBlockValue("q2_cipher_address", address);
     setBlockValue("q2_cipher_pad", pad)
     setBlockValue("q2_cipher", cipher);
+}
+
+function showQuestion3Answer()
+{
+    let clockTick = getBlockValue("q3_tick");
+    console.log("Tick is: " + clockTick);
+
+    clockTick = increaseCounter(clockTick);
+    setBlockValue("q3_a_answer", clockTick);
+    console.log("Tick after inccrease is " + clockTick);
+
+    clockTick = increaseCounter(clockTick);
+    setBlockValue("q3_b_answer", clockTick);
+
+    let recycledTime = (parseInt(1111, 2) - parseInt(clockTick, 2)) + 1;
+    setBlockValue("q3_c_answer", recycledTime);
+}
+
+function showQuestion4Answer()
+{
+
+}
+
+function showQuestion5Answer()
+{
+
 }
 
 function calculateCounterCipher(address, pad)
@@ -290,6 +302,9 @@ function showAnswer()
         case 4:
             showQuestion4Answer();
             break;
+        case 5:
+            showQuestion5Answer();
+            break;
     }
 }
 
@@ -356,8 +371,8 @@ function loadQuestion()
 {
     clearQuestions();
 
-    if(currentQuestion > 3)
-        currentQuestion = 4;
+    if(currentQuestion > 4)
+        currentQuestion = 5;
     if(currentQuestion < 1)
         currentQuestion = 1;
 
@@ -373,6 +388,9 @@ function loadQuestion()
             break;
         case 4:
             loadQuestion4();
+            break;
+        case 5:
+            loadQuestion5();
             break;
         default:
             ;           
@@ -401,6 +419,9 @@ function regenerate()
             break;
         case 4:
             loadQuestion4();
+            break;
+        case 5:
+            loadQuestion5();
             break;
         default:
             ;           
