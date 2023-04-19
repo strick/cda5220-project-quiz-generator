@@ -94,6 +94,11 @@ function loadQuestion5()
 function loadQuestion6()
 {
     hideAnswer('q6_answer');
+    
+    let data = generateHashAndByteBlock();
+    setBlockValue("q6_byte_value", data['byte']);
+    setBlockValue("q6_hash_value", data['hash']);
+
     document.getElementById("q6").style.display = "inherit";    
 }
 
@@ -179,6 +184,37 @@ function showQuestion5Answer()
 function showQuestion6Answer()
 {
 
+}
+
+function generateHashAndByteBlock()
+{
+    const minExponent = 3; // 2^3 = 8
+    const maxExponent = 12; // 2^8 = 256
+  
+    // Generate random exponents between min and max
+    const exponent1 = Math.floor(Math.random() * (maxExponent - minExponent + 1) + minExponent);
+    const exponent2 = Math.floor(Math.random() * (maxExponent - minExponent + 1) + minExponent);
+  
+    // Calculate the powers of 2 based on the exponents
+    const num1 = 2 ** exponent1;
+    const num2 = 2 ** exponent2;
+
+    let hash = 0;
+    let byte = 0;
+  
+    // Ensure the first number is always larger than the second
+    if (num1 < num2) {
+      hash = num2;
+      byte = num1;
+    } else {
+      hash = num1;
+      byte = num2
+    }
+
+    return {
+        hash: hash,
+        byte: byte
+    }
 }
 
 function calculateCounterCipher(address, pad)
