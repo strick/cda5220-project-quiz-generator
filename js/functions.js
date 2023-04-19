@@ -421,7 +421,7 @@ function prevQuestion()
 function loadQuestion()
 {
     clearQuestions();
-    currentQuestion = 5;
+    //currentQuestion = 5;
     if(currentQuestion > 4)
         currentQuestion = 5;
     if(currentQuestion < 1)
