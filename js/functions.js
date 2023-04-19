@@ -194,6 +194,11 @@ function showQuestion6Answer()
     setBlockValue("q6_a_answer_byte_to_bit_value2", byte * 8);
     setBlockValue("q6_a_answer_hash_value", hash);
     setBlockValue("q6_a_answer", arity);
+
+    setBlockValue("q6_b_arity_1", arity);
+    setBlockValue("q6_b_arity_2", arity);
+    setBlockValue("q6_b_maxRatio", calculateMaximumRatio(arity));
+    
 }
 
 function calculateArity(byte, hash)
@@ -205,6 +210,13 @@ function calculateArity(byte, hash)
     let arity = byteBits / hash;
 
     return arity;
+}
+
+function calculateMaximumRatio(arity)
+{
+    let maxRatio = (1/arity) / (1-(1/arity));
+
+    return maxRatio;
 }
 
 function generateHashAndByteBlock()
