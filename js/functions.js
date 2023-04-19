@@ -503,7 +503,7 @@ function prevQuestion()
 function loadQuestion()
 {
     clearQuestions();
-    currentQuestion = 6;
+    //currentQuestion = 6;
     if(currentQuestion > 5)
         currentQuestion = 6;
     if(currentQuestion < 1)
