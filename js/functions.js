@@ -263,7 +263,18 @@ function calculateCounterCipher(address, pad)
     let padBin = parseInt(pad, 2);
 
     var cipherBin = addressBin ^ padBin;
-    let cipher = cipherBin.toString(2).padEnd(4, '0');
+
+    let cipher;
+
+    if(cipherBin < 8){
+        cipher = cipherBin.toString(2).padStart(4, '0');
+    }
+    else {
+        cipher = cipherBin.toString(2).padEnd(4, '0');
+    }
+
+
+    // let cipher = cipherBin.toString(2).padEnd(4, '0');
     //console.log(address + " XOR " + pad + " = " + cipher);
 
     return cipher;
