@@ -102,6 +102,12 @@ function loadQuestion6()
     document.getElementById("q6").style.display = "inherit";    
 }
 
+function loadQuestion7()
+{
+    hideAnswer('q7_answer');
+    document.getElementById("q7").style.display = "inherit";    
+}
+
 function showQuestion2Answer()
 {
     var address = getBlockValue("q2_block_a");
@@ -142,6 +148,7 @@ function showQuestion3Answer()
 }
 
 function showQuestion4Answer(){}
+function showQuestion7Answer(){}
 
 function showQuestion5Answer()
 {
@@ -438,6 +445,9 @@ function showAnswer()
         case 6:
             showQuestion6Answer();
             break;
+        case 7:
+            showQuestion7Answer();
+            break;
     }
 }
 
@@ -504,8 +514,8 @@ function loadQuestion()
 {
     clearQuestions();
     //currentQuestion = 6;
-    if(currentQuestion > 5)
-        currentQuestion = 6;
+    if(currentQuestion > 6)
+        currentQuestion = 7;
     if(currentQuestion < 1)
         currentQuestion = 1;
 
@@ -527,6 +537,9 @@ function loadQuestion()
             break;
         case 6:
             loadQuestion6();
+            break;
+        case 7:
+            loadQuestion7();
             break;
         default:
             ;           
@@ -561,6 +574,9 @@ function regenerate()
             break;
         case 6:
             loadQuestion6();
+            break;
+        case 7:
+            loadQuestion7();
             break;
         default:
             ;           
